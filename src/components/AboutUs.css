@@ -1,0 +1,95 @@
+/* 🌟 About Us Section */
+.about-us {
+  padding: 60px 20px;
+  background-color: #f9f9f9; /* Soft white background */
+  color: #333; /* Dark gray text for readability */
+  text-align: center;
+}
+
+/* 📌 About Us Container */
+.about-us-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+}
+
+/* 📸 Image Styling */
+.about-us-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* 🔥 Image Hover Effect */
+.about-us-image img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 📄 Content Styling */
+.about-us-content {
+  max-width: 500px;
+  text-align: left;
+}
+
+.about-us h2 {
+  font-size: 34px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.about-us p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* 🔘 Explore Button */
+.explore-button {
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+/* 🚀 Button Hover Effect */
+.explore-button:hover {
+  background: #e83010;
+  transform: scale(1.1);
+  box-shadow: 0px 8px 20px rgba(255, 99, 71, 0.4);
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .about-us-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .about-us-content {
+    text-align: center;
+  }
+}

@@ -1,0 +1,152 @@
+/* 🌟 Full Page Center Alignment */
+.add-material-container {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* 🎨 Add Material Form */
+  .add-material-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 450px; /* ⬅ Increased width */
+  }
+  
+  /* 📝 Input Fields */
+  .add-material-form input,
+  .add-material-form textarea {
+    width: 95%; /* ⬅ Increased width */
+    padding: 14px;
+    margin: 8px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    background: #f9f9f9;
+    text-align: center;
+  }
+  
+  /* ✨ Hover & Focus Effect */
+  .add-material-form input:hover,
+  .add-material-form textarea:hover,
+  .add-material-form input:focus,
+  .add-material-form textarea:focus {
+    border-color: #4caf50;
+    background: #fff;
+    box-shadow: 0px 0px 8px rgba(76, 175, 80, 0.5);
+    transform: scale(1.02);
+  }
+  
+  /* 📂 File Input Custom Styling */
+  .add-material-form input[type="file"] {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .add-material-form input[type="file"]:hover {
+    transform: scale(1.05);
+  }
+  
+  /* 🎨 Buttons */
+  .add-btn,
+  .edit-btn {
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%; /* ⬅ Full width */
+    max-width: 450px; /* ⬅ Ensure it aligns with the form */
+  }
+  
+  /* ✅ Green Add Button */
+  .add-btn {
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: white;
+  }
+  
+  .add-btn:hover {
+    background: linear-gradient(45deg, #218838, #1e7e34);
+    transform: scale(1.05);
+  }
+  
+  /* 🔵 Full-Width Edit Button */
+  .edit-btn {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background: linear-gradient(45deg, #0056b3, #004494);
+    transform: scale(1.05);
+  }
+  
+  /* 📜 Materials List */
+  .material-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+  }
+  
+  /* 📌 Material Card */
+  .material-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+  }
+  
+  .material-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .material-card h3 {
+    margin: 10px 0;
+  }
+  
+  /* 🔘 Buttons inside card */
+  .card-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  /* ❌ Red Delete Button */
+  .delete-btn {
+    background: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* ⬅ Full width */
+  }
+  
+  .delete-btn:hover {
+    background: #c82333;
+    transform: scale(1.05);
+  }
+  

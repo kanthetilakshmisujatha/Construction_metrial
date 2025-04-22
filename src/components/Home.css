@@ -1,0 +1,53 @@
+.home {
+    position: relative;
+    background-image: url('sunset.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  .home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Change 0.5 to the desired opacity */
+    z-index: 1;
+  }
+  
+  .home > * {
+    position: relative;
+    z-index: 2;
+  }
+  
+
+.home-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.home h1 {
+  font-size: 36px;
+}
+
+.home p {
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.btn {
+  background-color: #ff6347;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #e55347;
+}

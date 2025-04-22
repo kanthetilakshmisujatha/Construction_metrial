@@ -1,0 +1,129 @@
+/* General Styling */
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the page takes full height */
+  justify-content: space-between; /* Places the header at top and footer at bottom */
+  padding: 50px 20px; /* Adding padding for spacing */
+  background-color: #f0f0f0;
+}
+
+/* Header and Footer Styling */
+header {
+  margin-bottom: 20px; /* Adds space between the header and form */
+}
+
+footer {
+  margin-top: 20px; /* Ensures there’s some space between the form and footer */
+  padding: 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+/* Form Container Styling */
+.form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Limit the max width for form */
+  margin: 0 auto; /* Centers the form */
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Input Styling */
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Button Styling */
+button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .App {
+    padding: 30px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .App {
+    padding: 20px;
+  }
+
+  .form-container {
+    padding: 15px;
+    width: 90%;
+  }
+
+  form {
+    gap: 8px;
+  }
+
+  button {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding: 15px;
+  }
+
+  .form-container {
+    padding: 10px;
+    width: 100%;
+  }
+
+  form {
+    gap: 5px;
+  }
+
+  input {
+    padding: 8px;
+  }
+
+  button {
+    padding: 8px;
+  }
+}
