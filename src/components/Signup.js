@@ -261,7 +261,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/auth/signup', 
+        'https://construction-metrial-2.onrender.com', 
         { name, email, password, phone },
         { headers: { 'Content-Type': 'application/json' } }
       );
