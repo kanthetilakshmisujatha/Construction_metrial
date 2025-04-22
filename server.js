@@ -254,12 +254,16 @@
 // app.listen(PORT, () => {
 //   console.log(`🚀 Server running at http://localhost:${PORT}`);
 // });const express = require("express");
-const mongoose = require("mongoose");
+
+
+
+const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const express = require("express");
+const sqlite3 = require("sqlite3").verbose();
+const path = require("path");
 
 dotenv.config();
 const app = express();
@@ -269,83 +273,85 @@ const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 // Middleware
 app.use(express.json());
 app.use(cors());
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
-// MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URI, clientOptions)
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
-
-// User Schema & Model
-const userSchema = new mongoose.Schema({
-  name: String,
-  email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
-  phone: String,
+// 📁 SQLite DB File
+const dbPath = path.resolve(__dirname, "users.db");
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) return console.error("❌ Database connection failed:", err.message);
+  console.log("✅ Connected to SQLite database.");
 });
 
-const User = mongoose.model("User", userSchema);
+// 🧱 Create Users Table if not exists
+db.run(
+  `CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    phone TEXT
+  )`,
+  (err) => {
+    if (err) console.error("❌ Table creation failed:", err.message);
+  }
+);
 
-// 🔹 **Signup Route**
+// 🔹 Signup Route
 app.post("/api/auth/signup", async (req, res) => {
-  try {
-    const { name, email, password, phone } = req.body;
+  const { name, email, password, phone } = req.body;
 
-    if (!name || !email || !password || !phone) {
-      return res.status(400).json({ success: false, error: "❌ All fields are required" });
-    }
+  if (!name || !email || !password || !phone) {
+    return res.status(400).json({ success: false, error: "❌ All fields are required" });
+  }
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
+  db.get("SELECT * FROM users WHERE email = ?", [email], async (err, row) => {
+    if (row) {
       return res.status(400).json({ success: false, error: "❌ Email already registered" });
     }
 
     const hashedPassword = await bcrypt.hash(password.toString(), 10);
-    const newUser = new User({ name, email, password: hashedPassword, phone });
 
-    await newUser.save();
-    res.status(201).json({ success: true, message: "✅ User registered successfully" });
-  } catch (error) {
-    console.error("Signup Error:", error.message);
-    res.status(500).json({ success: false, error: "❌ Internal Server Error" });
-  }
+    db.run(
+      "INSERT INTO users (name, email, password, phone) VALUES (?, ?, ?, ?)",
+      [name, email, hashedPassword, phone],
+      function (err) {
+        if (err) {
+          console.error("❌ Signup Error:", err.message);
+          return res.status(500).json({ success: false, error: "❌ Internal Server Error" });
+        }
+        res.status(201).json({ success: true, message: "✅ User registered successfully" });
+      }
+    );
+  });
 });
 
-// 🔹 **Login Route (Fixed)**
-app.post("/api/auth/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
+// 🔹 Login Route
+app.post("/api/auth/login", (req, res) => {
+  const { email, password } = req.body;
 
-    // ✅ 1. Check if user exists
-    const user = await User.findOne({ email });
+  db.get("SELECT * FROM users WHERE email = ?", [email], async (err, user) => {
     if (!user) {
       return res.status(401).json({ success: false, error: "❌ Invalid email or password" });
     }
 
-    // ✅ 2. Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ success: false, error: "❌ Invalid email or password" });
     }
 
-    // ✅ 3. Generate JWT Token
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "1h" });
 
     res.status(200).json({
       success: true,
       message: "✅ Login successful",
-      token, // Send token for authentication
-      user: { id: user._id, name: user.name, email: user.email, phone: user.phone },
+      token,
+      user: { id: user.id, name: user.name, email: user.email, phone: user.phone },
     });
-  } catch (error) {
-    console.error("Login Error:", error.message);
-    res.status(500).json({ success: false, error: "❌ Internal Server Error" });
-  }
+  });
 });
 
-// Start Server
+// 🚀 Start Server
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+
 
