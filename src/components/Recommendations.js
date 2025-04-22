@@ -164,7 +164,7 @@ const Recommendations = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:8000/recommend-material", {
+      const response = await axios.post("https://construction-metrial.onrender.com", {
         environment,
         budget: parseInt(budget),
         type
