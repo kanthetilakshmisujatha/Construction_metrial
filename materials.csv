@@ -1,0 +1,4 @@
+Material,Durability	Cost,Suitability,Project Type,Environmental Conditions
+Concrete,High,Expensive	Suitable,Building,Dry
+Steel,High,Expensive,Suitable,Building,Wet
+Wood,Low,Cheap,Suitable,Residential,Dry
