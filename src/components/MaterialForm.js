@@ -16,7 +16,7 @@ const MaterialForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post("http://localhost:5002/recommend", projectDetails);
+    const response = await axios.post("https://construction-metrial.onrender.com", projectDetails);
     setRecommendations(response.data);
   };
 
