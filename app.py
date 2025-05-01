@@ -377,10 +377,20 @@
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="0.0.0.0", port=8000)
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
 
 app = FastAPI()
+
+# ✅ Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can specify origins like ["http://localhost:3000"] in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MATERIALS = [
     {"name": "Concrete", "durability": 9, "cost": 500, "fire_resistance": 8, "eco_score": 5, "suitability": ["urban", "general"]},
