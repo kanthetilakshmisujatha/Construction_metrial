@@ -74,7 +74,7 @@ const Login = ({ onLogin }) => {
     setMessage("");
 
     try {
-      const response = await axios.post("https://construction-metrial-2.onrender.com", {
+      const response = await axios.post("https://construction-metrial-2.onrender.com/api/auth/login", {
         email,
         password,
       });
@@ -198,3 +198,4 @@ styleSheet.innerText = `
 document.head.appendChild(styleSheet);
 
 export default Login;
+// http://localhost:5000/api/auth/login
