@@ -1,26 +1,4 @@
-// import React from 'react';
-// import './MaterialList.css';
 
-// const MaterialList = ({ materials }) => {
-//     return (
-//         <div className="material-list">
-//             <h2>Recommended Materials</h2>
-//             <ul>
-//                 {materials.map((material, index) => (
-//                     <li key={index} className="material-card">
-//                         <h3>{material.name}</h3>
-//                         <p><strong>Cost:</strong> ${material.cost}</p>
-//                         <p><strong>Durability:</strong> {material.durability}/10</p>
-//                         <p><strong>Supplier:</strong> {material.supplier}</p>
-//                         <p><strong>Availability:</strong> {material.availability}</p>
-//                     </li>
-//                 ))}
-//             </ul>
-//         </div>
-//     );
-// };
-
-// export default MaterialList;
 import React, { useState } from 'react';
 import axios from 'axios';
 
