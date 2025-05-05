@@ -1,21 +1,4 @@
-// import React from 'react';
-// import './Footer.css';
 
-// const Footer = () => {
-//   return (
-//     <footer className="footer">
-//       <div className="footer-container">
-//         <p>&copy; 2025 Construction Materials. All rights reserved.</p>
-//         <div className="footer-info">
-//           <p>📍 Location: Hyderabad, India</p>
-//           <p>📞 Contact: +91 98765 43210</p>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// };
-
-// export default Footer;
 import React from "react";
 import { FaEnvelope, FaLinkedin, FaInstagram, FaTwitter } from "react-icons/fa";
 import "./Footer.css";
