@@ -152,7 +152,7 @@
 // export default Recommendations;
 import React, { useState } from "react";
 import axios from "axios";
-import "./Recommendations.css";
+import "./Recommendations.css"; // Make sure this CSS file exists
 
 const Recommendations = () => {
   const [environment, setEnvironment] = useState("urban");
@@ -163,17 +163,20 @@ const Recommendations = () => {
 
   const handleSubmit = async () => {
     setLoading(true);
+    setResult(null); // Clear previous result
+
     try {
-      const response = await axios.post("https://construction-metrial.onrender.com", {
+      const response = await axios.post("https://construction-metrial.onrender.com/recommend-material", {
         environment,
         budget: parseInt(budget),
-        type
+        type,
       });
       setResult(response.data);
     } catch (error) {
       setResult(error.response?.data || { message: "Error fetching recommendations" });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -197,6 +200,7 @@ const Recommendations = () => {
           value={budget}
           onChange={(e) => setBudget(e.target.value)}
           className="input"
+          min="1"
         />
 
         <label>Type:</label>
@@ -219,7 +223,7 @@ const Recommendations = () => {
                 <strong>Durability:</strong> {result.durability} <br />
                 <strong>Fire Resistance:</strong> {result.fire_resistance} <br />
                 <strong>Eco Score:</strong> {result.eco_score} <br />
-                <strong>Suitability:</strong> {result.suitability || "N/A"}  
+                <strong>Suitability:</strong> {result.suitability || "N/A"}
               </p>
             ) : (
               <p className="error">{result.message}</p>
